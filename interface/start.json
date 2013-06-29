@@ -1,0 +1,30 @@
+{
+  "title"           : "StarterUI",
+  "description"     : "",
+
+  "theme": {
+    "background"    : "#06a",
+    "font"          : "#fff"
+  },
+
+  "activities": {
+  
+    "about": {
+      "title"       : "About",
+      "description" : "StarterUI reveals the app in your API",
+      "icon"        : "/img/learn.png"
+    },
+  
+    "learn": {
+      "title"       : "Learn",
+      "description" : "StarterUI has a clearly documented schema and easy-to-use components",
+      "icon"        : "/img/learn.png"
+    },
+  
+    "try": {
+      "title"       : "Quickstart",
+      "description" : "It's easy to get started with this tutorial",
+      "icon"        : "/img/learn.png"
+    }
+  }
+}
