@@ -1,7 +1,4 @@
-$shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-$radius: 2px;
-$pad: 15px;
-$micro: 2px;
+@import "common";
 
 body, html {
   width: 100%;
@@ -11,12 +8,12 @@ body, html {
 
 body {
   margin: 0;
-  padding: $pad;
+  padding: 0;
 
   &.error {
     background: #800;
     color: #fee;
-    padding: 0 1.33em;
+    margin: 0 1.33em;
     
     p {
       font-family: monospace;
