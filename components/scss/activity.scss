@@ -1,0 +1,70 @@
+
+.activity-view {
+  border-radius: $radius;
+  position: absolute;
+  top: 5 * $pad;
+  left: 5 * $pad;
+  right: 5 * $pad;
+  bottom: 5 * $pad;
+  padding: 2 * $pad;
+  border: $micro solid;
+  box-sizing: border-box;
+  background-color: transparent;
+  
+  &.active {
+    -webkit-transition: background-color 0.05s, top 0.05s, left 0.05s, right 0.05s, bottom 0.05s;
+    top: 1 * $pad !important;
+    left: 1 * $pad !important;
+    right: 1 * $pad !important;
+    bottom: 1 * $pad !important;
+    padding: 1 * $pad;
+    background-color: inherit;
+  }
+}
+
+.activity {
+  border-radius: $radius;
+  cursor: pointer;
+  padding: 2 * $pad;
+  margin: $pad;
+  box-sizing: margin-box;
+  width: 25%;
+  display: inline-block;
+  vertical-align: bottom;
+  background-color: rgba(255, 255, 255, 0.25);
+  min-width: 10 * $pad;
+  max-width: 20 * $pad;
+  min-height: 4 * $pad;
+  
+  .content {
+    overflow: hidden;
+    max-height: 64px + 2 * $pad;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p {
+    margin: 20px 0;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  h4:first-child, p:first-child {
+    margin-top: 0;
+  }
+  
+  h4:last-child, p:last-child {
+    margin-bottom: 0;
+  }
+  
+  &:hover {
+    -webkit-transition: background-color 0.1s;
+    background-color: rgba(255, 255, 255, 0.35);
+    text-shadow: none;
+    box-shadow: $shadow;
+  }
+  
+  &:active {
+    box-shadow: inset $shadow;
+  }
+}

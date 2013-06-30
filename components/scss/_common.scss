@@ -2,3 +2,11 @@ $shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 $radius: 2px;
 $pad: 15px;
 $micro: 2px;
+
+@mixin full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}

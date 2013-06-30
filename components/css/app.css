@@ -14,7 +14,7 @@ body {
 body.error {
   background: #800;
   color: #fee;
-  margin: 0 1.33em;
+  margin: 1.33em;
 }
 /* line 18, ../scss/app.scss */
 body.error p {
@@ -48,108 +48,36 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 /* line 47, ../scss/app.scss */
-.activity-view {
-  border-radius: 2px;
-  position: absolute;
-  top: 75px;
-  left: 75px;
-  right: 75px;
-  bottom: 75px;
-  padding: 30px;
-  border: 2px solid;
-  box-sizing: border-box;
-  background-color: transparent;
-}
-/* line 59, ../scss/app.scss */
-.activity-view.active {
-  -webkit-transition: background-color 0.05s, top 0.05s, left 0.05s, right 0.05s, bottom 0.05s;
-  top: 15px !important;
-  left: 15px !important;
-  right: 15px !important;
-  bottom: 15px !important;
-  padding: 15px;
-  background-color: inherit;
-}
-
-/* line 70, ../scss/app.scss */
-.activity {
-  border-radius: 2px;
-  cursor: pointer;
-  padding: 30px;
-  margin: 15px;
-  box-sizing: margin-box;
-  width: 25%;
-  display: inline-block;
-  vertical-align: bottom;
-  background-color: rgba(255, 255, 255, 0.25);
-  min-width: 150px;
-  max-width: 300px;
-  min-height: 60px;
-}
-/* line 84, ../scss/app.scss */
-.activity .content {
-  overflow: hidden;
-  max-height: 94px;
-}
-/* line 89, ../scss/app.scss */
-.activity h1, .activity h2, .activity h3, .activity h4, .activity h5, .activity h6, .activity p {
-  margin: 20px 0;
-  width: 100%;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-/* line 97, ../scss/app.scss */
-.activity h4:first-child, .activity p:first-child {
-  margin-top: 0;
-}
-/* line 101, ../scss/app.scss */
-.activity h4:last-child, .activity p:last-child {
-  margin-bottom: 0;
-}
-/* line 105, ../scss/app.scss */
-.activity:hover {
-  -webkit-transition: background-color 0.1s;
-  background-color: rgba(255, 255, 255, 0.35);
-  text-shadow: none;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-}
-/* line 112, ../scss/app.scss */
-.activity:active {
-  box-shadow: inset 1px 1px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* line 117, ../scss/app.scss */
 h1 {
   font-size: 60px;
 }
 
-/* line 121, ../scss/app.scss */
+/* line 51, ../scss/app.scss */
 h2 {
   font-size: 50px;
 }
 
-/* line 125, ../scss/app.scss */
+/* line 55, ../scss/app.scss */
 h3 {
   font-size: 40px;
 }
 
-/* line 129, ../scss/app.scss */
+/* line 59, ../scss/app.scss */
 h4 {
   font-size: 30px;
 }
 
-/* line 133, ../scss/app.scss */
+/* line 63, ../scss/app.scss */
 h5 {
   font-size: 20px;
 }
 
-/* line 137, ../scss/app.scss */
+/* line 67, ../scss/app.scss */
 h6, textarea, input, body {
   font-size: 16px;
 }
 
-/* line 141, ../scss/app.scss */
+/* line 71, ../scss/app.scss */
 textarea, input, body {
   font-family: "Droid Sans", Tahoma, sans-serif;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);

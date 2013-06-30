@@ -13,6 +13,13 @@ define([lib('underscore')], function (_) {
   var Base = function Base() {};
   
   /**
+   * Create child components
+   */
+  Base.prototype.createChildComponents = function createChildComponents() {
+    ;
+  };
+  
+  /**
    * Static method to create a component
    */
   Base.create = function createComponent(spec, callback) {
