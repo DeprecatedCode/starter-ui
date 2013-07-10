@@ -3,7 +3,12 @@
   "title"           : "StarterUI",
   "description"     : "The fastest way to build a web front end from an API",
   
-  "content": [
+  "style": {
+    "background"    : "#26a",
+    "color"         : "#fff"
+  },
+  
+  "children": [
 
     {
       "component"   : "activity",

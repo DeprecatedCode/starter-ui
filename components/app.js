@@ -48,22 +48,22 @@ define([lib('underscore'), lib('request'), cmp('base'), lib('domReady'),
         lib('polyfill'), lib('errors'), css('app')],
 
 function (_, Request, BaseComponent, domReady) {
-  
+
   /**
    * Start when ready
    */
   domReady(function () {
-    
+
     var script = document.head.querySelector('script');
-    
+
     if (!script) {
       throw new Error('No <script> element found in <head>');
     }
-    
+
     if (!script.dataset.start) {
       throw new Error('No "data-start" attribute found on first <script> element in <head>');
     }
-    
+
     /**
      * Load the first component spec and initialize, append to body
      */
@@ -72,7 +72,7 @@ function (_, Request, BaseComponent, domReady) {
         document.body.appendChild(component.element);
       });
     });
-  
+
   });
 
 });
