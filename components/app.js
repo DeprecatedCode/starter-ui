@@ -60,14 +60,14 @@ function (_, Request, BaseComponent, domReady) {
       throw new Error('No <script> element found in <head>');
     }
 
-    if (!script.dataset.start) {
-      throw new Error('No "data-start" attribute found on first <script> element in <head>');
+    if (!script.dataset.index) {
+      throw new Error('No "data-index" attribute found on first <script> element in <head>');
     }
 
     /**
      * Load the first component spec and initialize, append to body
      */
-    Request.json(script.dataset.start,  function handleStart(spec) {
+    Request.json(script.dataset.index, function handleStart(spec) {
       BaseComponent.create(spec, function (component) {
         document.body.appendChild(component.element);
       });

@@ -79,6 +79,6 @@ h6, textarea, input, body {
 
 /* line 71, ../scss/app.scss */
 textarea, input, body {
-  font-family: "Droid Sans", Tahoma, sans-serif;
+  font-family: "Droid Sans", Tahoma, Ubuntu, sans-serif;
   text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
 }

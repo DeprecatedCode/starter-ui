@@ -3,7 +3,7 @@ $radius: 2px;
 $pad: 15px;
 $micro: 2px;
 
-@mixin full {
+@mixin position-fill {
   position: absolute;
   top: 0;
   left: 0;

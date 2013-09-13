@@ -90,7 +90,7 @@ define([lib('underscore-min')], function (_) {
 
         var finalArgs = arguments;
 
-        fn.apply(
+        return fn.apply(
           finalFn, _(args).map(function (arg) {
 
             if (arg && typeof arg.arg === 'number') {
