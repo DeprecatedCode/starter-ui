@@ -1,14 +1,12 @@
 /**
  * Dependency paths
  */
-var lib = window.lib,
-    cmp = window.cmp,
-    css = window.css;
+var lib = window.lib;
 
 /**
  * Errors
  */
-define([lib('underscore'), css('app')], function (_) {
+define([lib('underscore')], function (_) {
   
   window.onerror = function(message, url, line, x) {  
     document.body.className = 'error';

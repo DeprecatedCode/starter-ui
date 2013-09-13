@@ -11,21 +11,21 @@
   "children": [
 
     {
-      "component"   : "activity",
+      "component"   : "view",
       "link"        : "about",
       "title"       : "About",
       "description" : "StarterUI reveals the app in your API"
     },
   
     {
-      "component"   : "activity",
+      "component"   : "view",
       "link"        : "learn/start",
       "title"       : "Learn",
       "description" : "StarterUI has a clearly documented schema and easy-to-use components"
     },
   
     {
-      "component"   : "activity",
+      "component"   : "view",
       "link"        : "try",
       "title"       : "Quickstart",
       "description" : "It's easy to get started with this tutorial"
