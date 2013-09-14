@@ -1,0 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+body code {
+  white-space: pre;
+  font-size: 13px;
+  display: block;
+  font-family: "Droid Sans Mono", monospace;
+}

@@ -1,0 +1,28 @@
+[
+  { 
+    "title"           : "StarterUI Installation",
+
+    "+": [{"width": 12, "+": [
+      {"$": "button", "link": "/", "title": "Home", "icon": "home"}
+    ]}]
+  },
+  
+  {"$": "horizontal-rule"},
+  
+  {"+": [
+    {"width": 6, "description": "StarterUI is loaded with Require.js - copy the following into your index.html file:",
+      "+": [{"$": "code", "code": [
+        "<!doctype html>",
+        "<html>",
+        "  <head>",
+        "    <link rel=\"stylesheet\" type=\"text/css\" href=\"/library/gumby/css/gumby.css\" />",
+        "    <script",
+        "      data-main=\"/components/app/app.js\"",
+        "      src=\"/library/require.js\"",
+        "    ></script>",
+        "  </head>",
+        "</html>"
+      ]}
+    ]}
+  ]}
+]

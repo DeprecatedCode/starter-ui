@@ -34,31 +34,65 @@ require.config({
  * @author Nate Ferrero
  */
 define([lib('underscore'), lib('request'), cmp('base'), lib('domReady'),
-        lib('polyfill'), lib('errors')],
+        lib('native.history'), lib('polyfill'), lib('errors')],
 
 function (_, Request, BaseComponent, domReady) {
+  
+  /**
+   * App
+   */
+  var app = {
+    'load': function (title, url, newState) {
+      if (newState !== false) {
+        history.pushState({}, title, url);
+      }
+      document.body.style.cursor = 'progress';
+      document.title = 'Loading';
+      Request.json('/interface' + url.replace(/\/$/, '/index') + '.json', function handleLoad(spec) {
+        document.body.innerHTML = '';
+        document.title = '';
+        document.body.style.cursor = 'default';
+        BaseComponent.create(spec, 0, function (element) {
+          _(document.body).append(element);
+        });
+      });
+    }
+  };
 
   /**
    * Start when ready
    */
   domReady(function () {
-
-    var script = document.head.querySelector('script');
-
-    if (!script) {
-      throw new Error('No <script> element found in <head>');
-    }
-
-    if (!script.dataset.index) {
-      throw new Error('No "data-index" attribute found on first <script> element in <head>');
-    }
+    
+    /**
+     * Handle Link Clicks
+     */
+    document.body.addEventListener('click', function handleClickEvent(evt) {
+      if (!evt.ctrlKey && evt.target && evt.target.hostname == window.location.hostname) {
+        app.load(evt.target.innerText, evt.target.pathname);
+        evt.preventDefault();
+        return false;
+      }
+    });
+    
+    /**
+     * Handle Pop State
+     */
+    window.addEventListener('popstate', function (evt) {
+        app.load('', window.location.pathname, false);
+    });
 
     /**
      * Load the first component spec and initialize, append to body
      */
-    Request.json(script.dataset.index, function handleStart(spec) {
-      BaseComponent.create(spec, function (component) {
-        document.body.appendChild(component.element);
+    var url = '/index';
+    if (window.location.hash.length) {
+      url = window.location.hash.replace('#', '').replace(/\/$/, '/index');
+    }
+    url = '/interface' + url + '.json';
+    Request.json(url, function handleIndex(spec) {
+      BaseComponent.create(spec, 0, function (element) {
+        _(document.body).append(element);
       });
     });
 

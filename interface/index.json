@@ -1,34 +1,49 @@
-{ 
-  "component"       : "view",
-  "title"           : "StarterUI",
-  "description"     : "The fastest way to build a web front end from an API",
-  
-  "style": {
-    "background"    : "#26a",
-    "color"         : "#fff"
+[
+  { 
+    "title"           : "StarterUI",
+    "description"     : "@icon-megaphone StarterUI is a powerful web UI generator that requires zero configuration or HTML+CSS development, and instead relies on a well-defined JSON API structure to construct an interface. With StarterUI, any developer can build a functional web (and in the future mobile) application with only knowledge of one server-side programming language.",
+    
+    "style": {
+      "x-background"    : "#26a",
+      "x-color"         : "#fff"
+    }
   },
   
-  "children": [
+  {"+": [
+  
+    {
+      "width"       : 4,
+      "title"       : "About",
+      "description" : "StarterUI reveals a beautiful app from a JSON API in your choice of programming language.",
+      "+"           : [{"$": "space"}, {"$": "button", "title": "Install Now", "link": "/install", "type": "primary", "icon": "download"}, {"$": "space"}]
+    },
+  
+    {
+      "width"       : 4,
+      "title"       : "Learn",
+      "description" : "StarterUI has a clearly documented JSON schema and easy-to-use components.",
+      "+"           : [{"$": "space"}, {"$": "button", "title": "View Documentation", "link": "/learn/index", "icon": "lifebuoy"}]
+    },
+  
+    {
+      "width"       : 4,
+      "title"       : "Quickstart",
+      "description" : "It's easy to get started with this tutorial. We'll walk you through building the classic todo list app.",
+      "+"           : [{"$": "space"}, {"$": "button", "title": "Start Tutorial", "link": "/tutorial", "icon": "rocket"}]
+    }]
+  },
+  
+  {"$": "horizontal-rule"},
+  
+  {"+": [
 
     {
-      "component"   : "view",
-      "link"        : "about",
-      "title"       : "About",
-      "description" : "StarterUI reveals the app in your API"
-    },
-  
-    {
-      "component"   : "view",
-      "link"        : "learn/start",
-      "title"       : "Learn",
-      "description" : "StarterUI has a clearly documented schema and easy-to-use components"
-    },
-  
-    {
-      "component"   : "view",
-      "link"        : "try",
-      "title"       : "Quickstart",
-      "description" : "It's easy to get started with this tutorial"
+      "width"       : 12,
+      "title"       : "Open Source",
+      "description" : "StarterUI source is available on GitHub, and ideas and contributions are welcome. To follow or fork the project, visit the repository:",
+      "+"           : [{"$": "space"}, {"$": "button", "title": "View on GitHub", "link": "https://github.com/NateFerrero/starter-ui", "icon": "flow-branch"}]
     }
-  ]
-}
+
+  ]}
+  
+]

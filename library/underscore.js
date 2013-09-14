@@ -11,6 +11,9 @@ define([lib('underscore-min')], function (_) {
   _.mixin({
 
     'append': function (el, query, attrs) {
+      if (query._wrapped) {
+        query = query._wrapped;
+      }
       if (query instanceof Element) {
         el.appendChild(query);
         if (attrs) {
@@ -19,13 +22,14 @@ define([lib('underscore-min')], function (_) {
         return query;
       }
       var created = _.create(query, attrs);
-      el.appendChild(created);
+      el.appendChild(created._wrapped);
       return created;
     },
 
     'create': function (query, attrs) {
       if (typeof query === 'object') { attrs = query; query = ''; }
-      attrs = attrs || {}; query = query.split('.');
+      attrs = attrs || {};
+      query = typeof query === 'string' ? query.split('.') : ['div'];
       attrs.className =
         (attrs.className ? attrs.className + ' ' : '') +
         query.splice(1).join(' ');
@@ -34,7 +38,7 @@ define([lib('underscore-min')], function (_) {
        * Substitute innerHTML for html
        */
       if (attrs.html) {
-        attrs.innerHTML = attrs.html;
+        attrs.innerHTML = _.magic(attrs.html);
         delete attrs.html;
       }
 
@@ -48,7 +52,58 @@ define([lib('underscore-min')], function (_) {
 
       var created = document.createElement(query[0] || 'div');
       _.extend(created, attrs);
-      return created;
+      return _(created);
+    },
+    
+    /**
+     * Add CSS Class to an element
+     */
+    'addClass': function (el, cls) {
+      return _(cls.split(' ')).each(function (item) {
+        el.classList.add(item);
+      });
+    },
+    
+    /**
+     * Remove CSS Class from an element
+     */
+    'removeClass': function (el, cls) {
+      return _(cls.split(' ')).each(function (item) {
+        el.classList.remove(item);
+      });
+    },
+    
+    /**
+     * Set or read HTML from an element
+     */
+    'html': function (el, html) {
+      if (html) {
+        el.innerHTML = _.magic(html);
+        return this;
+      }
+      return el.innerHTML;
+    },
+    
+    /**
+     * Set or read Text from an element
+     */
+    'text': function (el, text) {
+      if (text) {
+        el.innerText = text;
+        return this;
+      }
+      return el.innerText;
+    },
+    
+    /**
+     * Set or read style from an element
+     */
+    'style': function (el, style) {
+      if (style) {
+        _.extend(el.style, style);
+        return this;
+      }
+      return el.style;
     },
 
     /**
@@ -104,6 +159,13 @@ define([lib('underscore-min')], function (_) {
       };
 
       return finalFn;
+    },
+    
+    /**
+     * Magic
+     */
+    'magic': function(html) {
+      return html.replace(/\@icon-([a-z0-9\-]+)/, '<i class="icon-$1"></i>');
     }
 
   });

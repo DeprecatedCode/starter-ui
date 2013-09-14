@@ -18,7 +18,7 @@ define([lib('underscore')], function (_) {
      * Default initialization
      */
     proto.init = function initBaseComponent(el) {
-      this.element.innerHTML = JSON.stringify(this.spec);
+      this.element.html(JSON.stringify(this.spec));
     };
 
     /**
@@ -26,8 +26,8 @@ define([lib('underscore')], function (_) {
      */
     proto.createChildComponents = function createChildComponents() {
 
-      _(this.spec.children).each(
-        _(cls.create).curry({arg: 0}, this.appendChildComponent.bind(this))
+      _(this.spec['+']).each(
+        _(cls.create).curry({arg: 0}, this.depth + 1, this.append.bind(this))
       );
 
     };
@@ -35,21 +35,39 @@ define([lib('underscore')], function (_) {
     /**
      * Append child component
      */
-    proto.appendChildComponent = function appendChildComponent(component) {
-        this.element.appendChild(component.element);
+    proto.append = function append(element) {
+      (this.womb || this.element).append(element);
     };
 
     /**
      * Static method to create a component
      */
-    cls.create = function createComponent(spec, callback) {
+    cls.create = function createComponent(spec, depth, callback) {
+      
+      /**
+       * Handle arrays of components
+       */
+      if (spec && spec.constructor === Array) {
+        return spec.forEach(function (each) {
+          cls.create(each, depth, callback);
+        });
+      }
+      
+      /**
+       * Prepare element
+       */
+      var element = _.create();
 
       /**
-       * Validate spec basics
+       * Callback when element is ready
+       */
+      callback(element);
+
+      /**
+       * Spec basics
        */
       if (!spec.component) {
-        console.error('Bad spec:', spec);
-        throw new Error("Component spec is missing `component` key indicating type");
+        spec.component = spec.$ || 'view';
       }
 
       /**
@@ -58,33 +76,28 @@ define([lib('underscore')], function (_) {
       require([cmp(spec.component)], function componentConstructor(Component) {
 
         var component = new Component();
+        component.depth = depth || 0;
         component.spec = spec;
         component.component = spec.component;
 
         /**
          * Create componennt DOM element
          */
-        component.element = document.createElement('div');
-        component.element.classList.add('component-' + component.component);
+        component.element = element;
+        component.element.addClass('component-' + component.component);
 
         /**
          * Apply style if specified
          */
         if (spec.style) {
-          _.extend(component.element.style, spec.style);
+          component.element.style(spec.style);
         }
 
         /**
          * Init component and child components
          */
-        component.init(_(component.element));
+        component.init(component.element);
         component.createChildComponents();
-
-        /**
-         * Callback when complete
-         */
-        callback(component);
-
       });
 
     };
