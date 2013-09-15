@@ -1,28 +1,27 @@
 [
-  { 
-    "title"           : "StarterUI Installation",
+  {".": "row", "title": "StarterUI Installation",
+   "+": [{"$src": "/interface/navigation.json"}]},
 
-    "+": [{"width": 12, "+": [
-      {"$": "button", "link": "/", "title": "Home", "icon": "home"}
-    ]}]
-  },
-  
   {"$": "horizontal-rule"},
   
-  {"+": [
-    {"width": 6, "description": "StarterUI is loaded with Require.js - copy the following into your index.html file:",
-      "+": [{"$": "code", "code": [
-        "<!doctype html>",
-        "<html>",
-        "  <head>",
-        "    <link rel=\"stylesheet\" type=\"text/css\" href=\"/library/gumby/css/gumby.css\" />",
-        "    <script",
-        "      data-main=\"/components/app/app.js\"",
-        "      src=\"/library/require.js\"",
-        "    ></script>",
-        "  </head>",
-        "</html>"
-      ]}
-    ]}
-  ]}
+  {".": "row", "+": [
+    {".": "twelve columns", "title": "Index HTML", "description": "StarterUI is just one HTML page away from revolutionizing your development. Copy this index.html file into your project:",
+     "+": [{"$": "code", "src": "/index.html"}, {"$": "space"}]
+    }
+  ]},
+  {".": "row", "+": [
+    {".": "six columns", "title": "Interface JSON", "description": "Place the following JSON under /interface/index.json:",
+     "+": [{"$": "code", "src": "/interface/example.json"}]
+    },
+    {
+      "$": "form", ".": "six columns", "title": "Rendered UI", "description": "Load your project index, it should now look like:",
+      "+": [
+        {"$": "fieldset", "title": "Rendered UI",
+            "+": [{"$src": "/interface/example.json"}]
+        }
+      ]
+    }
+  ]},
+  
+  {"$": "space"}
 ]

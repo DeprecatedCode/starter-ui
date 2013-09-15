@@ -7,7 +7,7 @@ var lib = window.lib,
 /**
  * Code
  */
-define([lib('underscore'), cmp('base')], function (_, BaseComponent) {
+define([lib('underscore'), cmp('base'), lib('request')], function (_, BaseComponent, Request) {
 
   /**
    * Create the Code subclass of BaseComponent
@@ -18,7 +18,24 @@ define([lib('underscore'), cmp('base')], function (_, BaseComponent) {
      * Initialize Code  component
      */
     proto.init = function initCodeComponent(el) {
-      el.append('code').text(this.spec.code.join('\n'));
+      var pre = el.append('pre');
+      
+      var ready = function (code) {
+        pre.append('code').text(code);
+        
+        if (window.hljs) {
+          window.hljs.highlightBlock(pre._wrapped);
+        }
+      };
+      
+      if (this.spec.code) {
+        ready(this.spec.code.constructor === Array ?
+          this.spec.code.join('\n') : this.spec.code);
+      }
+      
+      if (this.spec.src) {
+        Request.get(this.spec.src, ready);
+      }
     };
     
   });

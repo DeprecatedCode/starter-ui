@@ -1,32 +1,27 @@
 [
-  { 
-    "title"           : "StarterUI",
-    "description"     : "@icon-megaphone StarterUI is a powerful web UI generator that requires zero configuration or HTML+CSS development, and instead relies on a well-defined JSON API structure to construct an interface. With StarterUI, any developer can build a functional web (and in the future mobile) application with only knowledge of one server-side programming language.",
-    
-    "style": {
-      "x-background"    : "#26a",
-      "x-color"         : "#fff"
-    }
+  { "."             : "row",
+    "title"         : "StarterUI",
+    "description"   : "@icon-megaphone StarterUI is a powerful web UI generator that requires zero configuration or HTML+CSS development, and instead relies on a well-defined JSON API structure to construct an interface. With StarterUI, any developer can build a functional web (and in the future mobile) application with only knowledge of one server-side programming language."
   },
   
-  {"+": [
+  {".": "row", "+": [
   
     {
-      "width"       : 4,
+      "."          : "four columns",
       "title"       : "About",
       "description" : "StarterUI reveals a beautiful app from a JSON API in your choice of programming language.",
       "+"           : [{"$": "space"}, {"$": "button", "title": "Install Now", "link": "/install", "type": "primary", "icon": "download"}, {"$": "space"}]
     },
   
     {
-      "width"       : 4,
+      "."           : "four columns",
       "title"       : "Learn",
       "description" : "StarterUI has a clearly documented JSON schema and easy-to-use components.",
-      "+"           : [{"$": "space"}, {"$": "button", "title": "View Documentation", "link": "/learn/index", "icon": "lifebuoy"}]
+      "+"           : [{"$": "space"}, {"$": "button", "title": "View Documentation", "link": "/docs", "icon": "lifebuoy"}]
     },
   
     {
-      "width"       : 4,
+      "."           : "four columns",
       "title"       : "Quickstart",
       "description" : "It's easy to get started with this tutorial. We'll walk you through building the classic todo list app.",
       "+"           : [{"$": "space"}, {"$": "button", "title": "Start Tutorial", "link": "/tutorial", "icon": "rocket"}]
@@ -38,7 +33,7 @@
   {"+": [
 
     {
-      "width"       : 12,
+      "."           : "row",
       "title"       : "Open Source",
       "description" : "StarterUI source is available on GitHub, and ideas and contributions are welcome. To follow or fork the project, visit the repository:",
       "+"           : [{"$": "space"}, {"$": "button", "title": "View on GitHub", "link": "https://github.com/NateFerrero/starter-ui", "icon": "flow-branch"}]

@@ -5,20 +5,21 @@ var lib = window.lib,
     cmp = window.cmp;
 
 /**
- * HorizontalRule
+ * Error
  */
 define([lib('underscore'), cmp('base')], function (_, BaseComponent) {
 
   /**
-   * Create the Space subclass of BaseComponent
+   * Create the Error subclass of BaseComponent
    */
   return _.class(BaseComponent, function (proto) {
 
     /**
-     * Initialize Space component
+     * Initialize Error component
      */
-    proto.init = function initSpaceComponent(el) {
-      el.append('h2');
+    proto.init = function initErrorComponent(el) {
+      el.addClass('alert danger');
+      el.append('span', {html: this.spec.message || 'Unknown Error'});
     };
     
   });

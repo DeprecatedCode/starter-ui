@@ -1,0 +1,14 @@
+[
+  {".": "row", "title": "StarterUI Documentation",
+   "+": [{"$src": "/interface/navigation.json"}]},
+
+  {"$": "horizontal-rule"},
+  
+  {"+": [
+    
+    {".": "row", "$src": "/components/view/doc.js"},
+    
+    {".": "row", "$src": "/components/button/doc.js"}
+  
+  ]}
+]

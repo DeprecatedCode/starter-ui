@@ -7,7 +7,7 @@ var lib = window.lib,
 /**
  * Base
  */
-define([lib('underscore')], function (_) {
+define([lib('underscore'), lib('request')], function (_, Request) {
 
   /**
    * Base Class
@@ -42,26 +42,41 @@ define([lib('underscore')], function (_) {
     /**
      * Static method to create a component
      */
-    cls.create = function createComponent(spec, depth, callback) {
+    cls.create = function createComponent(spec, depth, callback, ready, element) {
       
       /**
        * Handle arrays of components
        */
       if (spec && spec.constructor === Array) {
         return spec.forEach(function (each) {
-          cls.create(each, depth, callback);
+          cls.create(each, depth, callback, ready);
         });
       }
       
       /**
        * Prepare element
        */
-      var element = _.create();
+      if (!element) {
+        element = _.create();
+      }
+
+      if (spec['.']) {
+        element.addClass(spec['.']);
+      }
 
       /**
        * Callback when element is ready
        */
       callback(element);
+      
+      /**
+       * Handle components with $src, this supercedes all else
+       */
+      if (spec.$src) {
+        return Request.json(spec.$src, function (data) {
+          cls.create(data, depth, callback, ready, element);
+        });
+      }
 
       /**
        * Spec basics
@@ -76,12 +91,12 @@ define([lib('underscore')], function (_) {
       require([cmp(spec.component)], function componentConstructor(Component) {
 
         var component = new Component();
-        component.depth = depth || 0;
+        component.depth = (depth || 0) + (spec.depth || 0);
         component.spec = spec;
         component.component = spec.component;
 
         /**
-         * Create componennt DOM element
+         * Create component DOM element
          */
         component.element = element;
         component.element.addClass('component-' + component.component);
@@ -98,6 +113,11 @@ define([lib('underscore')], function (_) {
          */
         component.init(component.element);
         component.createChildComponents();
+        
+        /**
+         * Callback when component has been rendered
+         */
+        typeof ready === 'function' && ready(component.element);
       });
 
     };

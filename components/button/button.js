@@ -18,8 +18,16 @@ define([lib('underscore'), cmp('base')], function (_, BaseComponent) {
      * Initialize Button component
      */
     proto.init = function initButtonComponent(el) {
-      el.addClass('pretty btn ' + (this.spec.size || 'medium') + ' ' +
-        (this.spec.type || 'default'));
+      
+      var type = this.spec.type || 'default';
+
+      if (this.spec.link && (window.location.hash.length === 0 &&
+        this.spec.link === window.location.pathname ||
+        '#' + this.spec.link === window.location.hash)) {
+        type = "info";
+      }
+      
+      el.addClass('pretty btn ' + (this.spec.size || 'medium') + ' ' + type);
       if (this.spec.icon) {
         el.addClass('icon-left icon-' + this.spec.icon);
       }

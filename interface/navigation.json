@@ -1,0 +1,8 @@
+[
+  {".": "right", "$": "button", "title": "View on GitHub",
+    "link": "https://github.com/NateFerrero/starter-ui", "icon": "flow-branch"},
+  {".": "left", "$": "button", "title": "Home", "link": "/", "icon": "home"},
+  {".": "left", "$": "button", "title": "Install", "link": "/install", "icon": "download"},
+  {".": "left", "$": "button", "title": "Documentation", "link": "/docs", "icon": "lifebuoy"},
+  {".": "left", "$": "button", "title": "Tutorial", "link": "/tutorial", "icon": "rocket"}
+]

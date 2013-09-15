@@ -26,6 +26,21 @@ define(function () {
    * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
    * THE SOFTWARE.
    */
+  var entityMap = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': '&quot;',
+    "'": '&#39;',
+    "/": '&#x2F;'
+  };
+
+  var escapeHtml = function(string) {
+    return String(string).replace(/[&<>"'\/]/g, function (s) {
+      return entityMap[s];
+    });
+  };
+   
   var request = function request(url, data, fn) {
     
     var scope = {};
@@ -42,7 +57,7 @@ define(function () {
     
     scope.stateChange = function (object) {
       if (scope.req.readyState==4)
-        scope.callback(scope.req.responseText);
+        scope.callback(scope.req.responseText, scope.req);
     };
     
     scope.getRequest = function() {
@@ -54,8 +69,8 @@ define(function () {
     };
     
     scope.postBody = data || "";
-    scope.callback=fn;
-    scope.url=url;
+    scope.callback = fn;
+    scope.url = url;
     scope.req = scope.getRequest();
     
     if(scope.req) {
@@ -76,11 +91,65 @@ define(function () {
   };
 
   return {
+    'get': function requestGet(url, fn) {
+      request(url, fn);
+    },
     'json': function requestJSON(url, data, fn) {
       if (typeof data === 'function') {
         fn = data; data = null;
       }
-      request(url, data, function parseJSON(x) { fn(JSON.parse(x)); });
+      
+      /**
+       * Parse JSON Callback
+       */
+      var callbackJSON = function (text) {
+        var json;
+        try {
+          json = JSON.parse(text);
+        }
+        catch (e) {
+          json = {"$": "error", "message": "Invalid JSON: " +
+            escapeHtml(text.substr(0, 100)) +
+            (text.length > 20 ? '...' : '')};
+        }
+        finally {
+          fn(json);
+        }
+      };
+      
+      /**
+       * Allow multiple failover URLs
+       */
+      var callback;
+      if (url.constructor === Array) {
+        var urlIndex = 0;
+        var urlList = url;
+        url = urlList[urlIndex];
+        callback = function (text, req) {
+          /**
+           * Handle success
+           */
+          if (req.status === 200) {
+            callbackJSON(text);
+          }
+          
+          else {
+            if (urlIndex < urlList.length - 1) {
+              urlIndex += 1;
+              url = urlList[urlIndex];
+              request(url, data, callback);
+            }
+            
+            else {
+              throw new Error('Could not load any of the following URLs: ' + urlList.join(', '));
+            }
+          }
+        };
+      }
+      else {
+        callback = callbackJSON;
+      }
+      request(url, data, callback);
     }
   };
 

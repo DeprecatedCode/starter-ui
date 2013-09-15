@@ -46,14 +46,43 @@ function (_, Request, BaseComponent, domReady) {
       if (newState !== false) {
         history.pushState({}, title, url);
       }
-      document.body.style.cursor = 'progress';
+      
+      var target = document.body; // TODO
+      
+      target.style.cursor = 'progress';
       document.title = 'Loading';
-      Request.json('/interface' + url.replace(/\/$/, '/index') + '.json', function handleLoad(spec) {
-        document.body.innerHTML = '';
+      
+      if (url.substr(url.length - 1, 1) == '/') {
+        url = '/interface' + url + 'index.json';
+      }
+  
+      else {
+        url = ['/interface' + url + '.json', '/interface' + url + '/index.json'];
+      }
+      
+      Request.json(url, function handleLoad(spec) {
+        var removeElements = [];
+        [].forEach.call(target.children, function (el) {
+          if (el && el.classList) {
+            el.classList.add('marked-for-deletion');
+            removeElements.push(el);
+          }
+        });
         document.title = '';
-        document.body.style.cursor = 'default';
+        var switched = false;
+        target.style.cursor = 'default';
         BaseComponent.create(spec, 0, function (element) {
-          _(document.body).append(element);
+          _(target).append(element);
+          element.addClass('hidden');
+        }, function (element) {
+          element.removeClass('hidden');
+          if (switched) {
+            return;
+          }
+          removeElements.forEach(function (el) {
+            target.removeChild(el);
+          });
+          switched = true;
         });
       });
     }
@@ -85,16 +114,12 @@ function (_, Request, BaseComponent, domReady) {
     /**
      * Load the first component spec and initialize, append to body
      */
-    var url = '/index';
+    var url = '/';
     if (window.location.hash.length) {
-      url = window.location.hash.replace('#', '').replace(/\/$/, '/index');
+      url = window.location.hash.replace('#', '');
     }
-    url = '/interface' + url + '.json';
-    Request.json(url, function handleIndex(spec) {
-      BaseComponent.create(spec, 0, function (element) {
-        _(document.body).append(element);
-      });
-    });
+
+    app.load('', url, false);
 
   });
 

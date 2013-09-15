@@ -6,3 +6,22 @@ body code {
   display: block;
   font-family: "Droid Sans Mono", monospace;
 }
+
+.hidden {display: none;}
+
+body div.left {
+  margin-right: 0.5em;
+}
+
+body div.right {
+  float: right;
+  margin-left: 0.5em;
+}
+
+.marked-for-deletion {
+  opacity: 0.25;
+  -webkit-transition: opacity 0.25s ease-in;
+  -moz-transition: opacity 0.25s ease-in;
+  -o-transition: opacity 0.25s ease-in;
+  transition: opacity 0.25s ease-in;
+}
