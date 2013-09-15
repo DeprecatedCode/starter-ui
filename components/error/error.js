@@ -19,7 +19,7 @@ define([lib('underscore'), cmp('base')], function (_, BaseComponent) {
      */
     proto.init = function initErrorComponent(el) {
       el.addClass('alert danger');
-      el.append('span', {html: this.spec.message || 'Unknown Error'});
+      el.append('span', {html: '@icon-bell ' + (this.spec.message || 'Unknown Error')});
     };
     
   });

@@ -17,11 +17,11 @@
   {"depth": 2, ".": "row", "title": "@icon-dot Advanced Button", "+": [
     {".": "six columns", "title": "@icon-code JSON", "+": [
       {"$": "code", "code": ["{\"$\": \"button\", \"title\": \"Better Button\",",
-        " \"icon\": \"chat\", \"type\": \"danger\"}"]}  
+        " \"icon\": \"attention\", \"type\": \"danger\"}"]}  
     ]},
     {".": "one column"},
     {".": "three columns", "title": "@icon-eye Result", "+": [
-      {"$": "button", "title": "Better Button", "icon": "chat", "type": "danger"}  
+      {"$": "button", "title": "Danger Button", "icon": "attention", "type": "danger"}  
     ]}
   ]}
 
