@@ -2,5 +2,9 @@
   {".": "row", "title": "StarterUI Tutorial",
    "+": [{"$src": "/interface/navigation.json"}]},
 
-  {"$": "horizontal-rule"}
+  {"$": "horizontal-rule"},
+  
+  {".": "row", "title": "Create a To-Do List App", "description": "This short tutorial will walk you through the creation of a todo list application.", "+": [
+    {"$": "button", "title": "View the Finished App", "link": "/tutorial/todo", "type": "primary", "icon": "window"}
+  ]}
 ]

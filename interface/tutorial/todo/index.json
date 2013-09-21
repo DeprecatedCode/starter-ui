@@ -1,0 +1,10 @@
+[
+  {".": "row", "+": [{"$": "space"}, 
+    {"$": "button", "title": "Back to Tutorial", "link": "/tutorial", "icon": "up"}
+  ]},
+  {"$": "horizontal-rule"},
+  {".": "row", "title": "My To-Do List", "+": [
+    {"$": "button", "title": "New Task", "type": "primary", "icon": "plus"}
+  ]},
+  {".": "row", "$": "checkbox", "description": "A todo list item"}
+]

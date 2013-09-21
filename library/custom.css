@@ -25,3 +25,7 @@ body div.right {
   -o-transition: opacity 0.25s ease-in;
   transition: opacity 0.25s ease-in;
 }
+
+[class^="icon-"] a:before, [class*=" icon-"] a:before, [class^="icon-"] a:after, [class*=" icon-"] a:after, i[class^="icon-"], i[class*=" icon-"] {
+  font-weight: normal;
+}
