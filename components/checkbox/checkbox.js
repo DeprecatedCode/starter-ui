@@ -19,10 +19,17 @@ define([lib('underscore'), cmp('base')], function (_, BaseComponent) {
      */
     proto.init = function initCheckboxComponent(el) {
       this.field = el.append('.field');
-      this.label = this.field.append('label.checkbox');
+      this.label = this.field.append('label.checkbox.checked');
       this.input = this.label.append('input', {type: 'checkbox'});
-      this.label.append('span');
+      this.box = this.label.append('span');
+      this.tick = this.box.append('i.icon-check');
+      this.tick.addClass('hidden');
       this.label.append('font', {html: this.spec.description});
+      var component = this;
+      this.input.on('change', function () {
+        var method = (component.input._wrapped.checked ? 'remove' : 'add');
+        component.tick[method + 'Class']('hidden');
+      });
     };
     
   });

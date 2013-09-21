@@ -87,6 +87,11 @@ function (_, Request, BaseComponent, domReady) {
       });
     }
   };
+  
+  /**
+   * Add js to the body class
+   */
+  document.body.classList.add('js');
 
   /**
    * Start when ready

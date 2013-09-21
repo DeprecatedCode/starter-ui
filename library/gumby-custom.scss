@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
 
-.hidden {display: none;}
+.hidden {display: none !important;}
 
 body {
   code {
@@ -31,10 +31,14 @@ body {
   font-weight: normal;
 }
 
-i {
+p > i {
   margin: 0 1px;
   
   &:first-child {
     margin: 0 1px 0 -2px;
   }
+}
+
+.js .field .radio span, .js .field .checkbox span {
+  margin-right: 5px;
 }

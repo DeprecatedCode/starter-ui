@@ -2604,7 +2604,7 @@ table.rounded thead th, table.rounded thead td, table.rounded caption + tbody tr
 
 .ie9 .radio.checked i, .ie9 .checkbox.checked i { top: 0px; }
 
-.hidden { display: none; }
+.hidden { display: none !important; }
 
 body code { white-space: pre; font-size: 13px; display: block; font-family: "Droid Sans Mono", monospace; }
 body div.left { margin-right: 0.5em; }
@@ -2614,5 +2614,7 @@ body div.right { float: right; margin-left: 0.5em; }
 
 [class^="icon-"] a:before, [class*=" icon-"] a:before, [class^="icon-"] a:after, [class*=" icon-"] a:after, i[class^="icon-"], i[class*=" icon-"] { font-weight: normal; }
 
-i { margin: 0 1px; }
-i:first-child { margin: 0 1px 0 -2px; }
+p > i { margin: 0 1px; }
+p > i:first-child { margin: 0 1px 0 -2px; }
+
+.js .field .radio span, .js .field .checkbox span { margin-right: 5px; }

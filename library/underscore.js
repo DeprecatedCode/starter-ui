@@ -105,6 +105,14 @@ define([lib('underscore-min')], function (_) {
       }
       return el.style;
     },
+    
+    /**
+     * Attach event listener to element
+     */
+    'on': function(el, event, fn) {
+      el.addEventListener(event, fn);
+      return this;
+    },
 
     /**
      * Create a new class and inherit from all prototypes in given arguments
