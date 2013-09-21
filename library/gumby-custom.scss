@@ -1,3 +1,36 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+.hidden {display: none;}
+
+body {
+  code {
+    white-space: pre;
+    font-size: 13px;
+    display: block;
+    font-family: "Droid Sans Mono", monospace;
+  }
+  div.left {
+    margin-right: 0.5em;
+  }
+
+  div.right {
+    float: right;
+    margin-left: 0.5em;
+  }
+}
+
+.marked-for-deletion {
+  opacity: 0.25;
+  -webkit-transition: opacity 0.25s ease-in;
+  -moz-transition: opacity 0.25s ease-in;
+  -o-transition: opacity 0.25s ease-in;
+  transition: opacity 0.25s ease-in;
+}
+
+[class^="icon-"] a:before, [class*=" icon-"] a:before, [class^="icon-"] a:after, [class*=" icon-"] a:after, i[class^="icon-"], i[class*=" icon-"] {
+  font-weight: normal;
+}
+
 xi {
   margin: 0 1px;
   
