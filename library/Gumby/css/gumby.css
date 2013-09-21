@@ -2614,5 +2614,5 @@ body div.right { float: right; margin-left: 0.5em; }
 
 [class^="icon-"] a:before, [class*=" icon-"] a:before, [class^="icon-"] a:after, [class*=" icon-"] a:after, i[class^="icon-"], i[class*=" icon-"] { font-weight: normal; }
 
-xi { margin: 0 1px; }
-xi:first-child { margin: 0 1px 0 -2px; }
+i { margin: 0 1px; }
+i:first-child { margin: 0 1px 0 -2px; }
